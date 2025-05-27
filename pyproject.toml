@@ -1,0 +1,60 @@
+[project]
+name = "yaucl"
+description = "yet another user config library..."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "platformdirs>=4.3.8",
+    "tomli>=2.2.1 ; python_full_version < '3.11'",
+    "typing-extensions>=4.13.2 ; python_full_version < '3.11'",
+]
+authors = [
+    { name = "David Jetelina" }
+]
+license = "MIT"
+keywords = ["user", "userconfig", "xdg", "config", "conf", "toml", "env"]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/djetelina/yaucl"
+Documentation = "https://djetelina.github.io/yaucl"
+Repository = "https://github.com/djetelina/yaucl"
+Changelog = "https://github.com/djetelina/yaucl/blob/main/CHANGELOG.md"
+
+[dependency-groups]
+dev = [
+    "mkdocs-material>=9.6.14",
+    "mkdocstrings-python>=1.16.11",
+    "pyright>=1.1.401",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "ruff>=0.11.11",
+]
+
+[tool.ruff]
+extend-exclude = ["tests"]
+line-length = 144
+
+[tool.ruff.lint]
+select = ["E", "I", "ASYNC", "B", "A", "PIE", "PT", "SIM", "PTH", "N", "W", "PL", "UP", "RUF"]
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 72
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["yaucl"]
+
+[tool.hatch.version]
+path = "yaucl/__init__.py"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
