@@ -1,11 +1,25 @@
 # yaucl
 
+[![PyPI - Version](https://img.shields.io/pypi/v/yaucl)](https://pypi.org/project/yaucl/)
+![PyPI - License](https://img.shields.io/pypi/l/yaucl)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/yaucl)
+![GitHub Repo stars](https://img.shields.io/github/stars/DJetelina/yaucl?style=flat&logo=github)
+[![Documentation](https://img.shields.io/badge/docs-latest-blue.svg)](https://djetelina.github.io/yaucl)
+
 ...so I decided to create `yet another user config library`.
 
 yaucl aims to provide easy-to-use and trivial to implement configuration
 for your user-installed applications (such as CLIs, GUIs, TUIs, etc.).
 
 If you need a complicated configuration handling, this might not be the correct library for you.
+
+## Installation
+
+```shell
+$ uv add yaucl
+```
+
+Or pip, pipenv, poetry, whatever you prefer.
 
 ## Why yaucl
 

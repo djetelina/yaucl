@@ -19,7 +19,7 @@ permissions:
   contents: read # needed for actions/checkout
 
 jobs:
-  ruff:
+  pyright:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

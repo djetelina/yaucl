@@ -27,10 +27,16 @@ class BaseSectionConfig(ConfigHolder):
                     setattr(self, key, env_value)
 
     def generate_markdown_skeleton(self) -> str:
+        """
+        Generates a table with variables belonging to this section.
+        Returns: string containing a Markdown table
+
+        """
         doc = """
 | Option name | Description | Type | Default |
 |--------|-------------|------|---------|
 """
         for option, default in self._defaults.items():
             doc += f"""| `{option}` | -- | `{self.__annotations__[option].__name__}` | `{default}` |\n"""
+        # TODO I forgot about nested sections :/
         return doc
