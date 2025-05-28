@@ -30,7 +30,7 @@ If you need a complicated configuration handling, this might not be the correct 
 
 At the moment, yaucl supports [TOML](https://toml.io/en/) and Environmental Variables
 as sources for the configuration. While this is extensible (both in yaucl and DIY),
-the defaults will probably not change. 
+the defaults will probably not change.
 
-Out of the box, you set the defaults; then a config file can overwrite that, 
+Out of the box, you set the defaults; then a config file can overwrite that,
 and finally, environmental variables have the last say.

@@ -2,7 +2,9 @@ import logging
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Literal
+from typing import Literal, cast
+
+from yaucl.section_config import BaseSectionConfig
 
 if sys.version_info >= (3, 11):
     from typing import Self
@@ -183,7 +185,8 @@ class BaseConfig(ConfigHolder):
         if self.sections:
             doc += """\n### Sections\n\n"""
         for section_name, section in self.sections.items():
-            doc += f"#### {section_name}\n{section.generate_markdown_skeleton()}"
+            section = cast(BaseSectionConfig, section)
+            doc += f"#### {section_name}\n{section.generate_markdown_skeleton(section_name)}"
         doc += """\n## Configuration methods\n"""
         for source in self._load_from:
             doc += getattr(self, f"_{source}_doc")
@@ -194,14 +197,14 @@ class BaseConfig(ConfigHolder):
         doc = f"""
 ### TOML file
 
-File location: {self._conf_location_all}
+File location:{self._conf_location_all}
 """
         return doc
 
     @property
     def _conf_location_all(self) -> str:
         if self._conf_location:
-            return str(self.conf_file_path)
+            return f"`{self.conf_file_path}`"
         else:
             return f"""
 - Windows: `%APPDATA%/{self.app_name}/{self._conf_file_name}`

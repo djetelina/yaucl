@@ -1,4 +1,5 @@
 import os
+from typing import Literal
 from unittest.mock import patch
 
 from yaucl.env import get_env_value
@@ -76,3 +77,17 @@ def test_get_env_value_case_insensitive():
         assert get_env_value("TEST_CASE", str) == "value"
         assert get_env_value("test_case", str) == "value"
         assert get_env_value("Test_Case", str) == "value"
+
+
+def test_get_env_value_list():
+    """Test getting list values from environment variables."""
+    with patch.dict(os.environ, {"TEST_LIST": "1,2,3"}):
+        value = get_env_value("TEST_LIST", list[int])
+        assert value == [1, 2, 3]
+
+
+def test_get_env_value_literal():
+    """Test getting literal values from environment variables."""
+    with patch.dict(os.environ, {"TEST_LITERAL": "test_value"}):
+        value = get_env_value("TEST_LITERAL", Literal["test_value", "another_value"])
+        assert value == "test_value"
