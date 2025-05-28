@@ -7,19 +7,13 @@ for your user-installed applications (such as CLIs, GUIs, TUIs, etc.).
 
 If you need a complicated configuration handling, this might not be the correct library for you.
 
-## Why yaucl
-
-- Dataclass-first design
-- Full type hint support
-- Opinionated defaults
-- No runtime template definitions needed
-- TOML
-
-### Alternatives
+## Alternatives
 
 - Generic: [pydantic-settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)
 - User config: [confuse](https://pypi.org/project/confuse/)
 - Deployed apps: [dynaconf](https://pypi.org/project/dynaconf/)
+
+See the [Library Comparison](comparison.md) page for a detailed comparison between yaucl and these alternatives.
 
 ## The workflow
 

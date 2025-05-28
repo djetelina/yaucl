@@ -35,6 +35,8 @@ Or pip, pipenv, poetry, whatever you prefer.
 - User config: [confuse](https://pypi.org/project/confuse/)
 - Deployed apps: [dynaconf](https://pypi.org/project/dynaconf/)
 
+See the [Library Comparison](https://djetelina.github.io/yaucl/comparison/) page for a detailed comparison between yaucl and these alternatives.
+
 ## The workflow
 
 - Define dataclasses with your default configuration

@@ -5,6 +5,7 @@ nav:
   - Home: index.md
   - Quickstart: quickstart.md
   - Advanced usage: advanced.md
+  - Library Comparison: comparison.md
   - API Reference: api.md
 theme:
   name: material
