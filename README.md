@@ -31,6 +31,7 @@ Or pip, pipenv, poetry, whatever you prefer.
 
 ### Alternatives
 
+- Generic: [pydantic-settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)
 - User config: [confuse](https://pypi.org/project/confuse/)
 - Deployed apps: [dynaconf](https://pypi.org/project/dynaconf/)
 

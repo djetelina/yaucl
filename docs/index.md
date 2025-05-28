@@ -17,6 +17,7 @@ If you need a complicated configuration handling, this might not be the correct 
 
 ### Alternatives
 
+- Generic: [pydantic-settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)
 - User config: [confuse](https://pypi.org/project/confuse/)
 - Deployed apps: [dynaconf](https://pypi.org/project/dynaconf/)
 
