@@ -20,6 +20,7 @@ class SimpleBaseConfig(BaseConfig):
     enabled: bool = True
     section: SimpleSection = field(default_factory=SimpleSection)
 
+
 def test_markdown_skeleton():
     desired_doc = """
 # Configuring simplebase
@@ -47,7 +48,7 @@ def test_markdown_skeleton():
 
 ### TOML file
 
-File location: 
+File location:
 - Windows: `%APPDATA%/simplebase/config.toml`
 - Linux: `~/.config/simplebase/config.toml`
 - macOS: `~/Library/Application Support/simplebase/config.toml`

@@ -26,9 +26,12 @@ class BaseSectionConfig(ConfigHolder):
                 if env_value is not None:
                     setattr(self, key, env_value)
 
-    def generate_markdown_skeleton(self) -> str:
+    def generate_markdown_skeleton(self, name: str) -> str:
         """
         Generates a table with variables belonging to this section.
+        Args:
+            name: name under which this section is registered
+
         Returns: string containing a Markdown table
 
         """
@@ -38,5 +41,8 @@ class BaseSectionConfig(ConfigHolder):
 """
         for option, default in self._defaults.items():
             doc += f"""| `{option}` | -- | `{self.__annotations__[option].__name__}` | `{default}` |\n"""
-        # TODO I forgot about nested sections :/
+
+        for section_name, section in self.sections.items():
+            subsection_name = f"{name}.{section_name}"
+            doc += f"\n#### {subsection_name}\n{section.generate_markdown_skeleton(subsection_name)}"
         return doc

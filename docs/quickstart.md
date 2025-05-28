@@ -13,21 +13,21 @@ Dataclass your config, inherit yaucl base classes and profit.
     ```python
     import yaucl
     from dataclasses import dataclass, field
-    
-    
+
+
     @dataclass
     class SongsConfig(yaucl.BaseSectionConfig):
         genre: str = "metal"
-    
-    
+
+
     @dataclass
     class DocumentationConfig(yaucl.BaseConfig):
         timeout: float = 3.14
         colors: str = "rainbow"
         awesome: bool = True
         songs: SongsConfig = field(default_factory=SongsConfig)
-    
-    
+
+
     config = DocumentationConfig.init()
     ```
 
@@ -43,7 +43,7 @@ pass it through your application to where it needs to be, you're done.
 ### App name
 
 The usage above is, however, a little dangerous because it guesses the name of your
-application from the name of your class. Proper minimal usage would actually 
+application from the name of your class. Proper minimal usage would actually
 call `init` like this:
 
 ```python

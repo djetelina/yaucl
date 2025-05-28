@@ -1,7 +1,10 @@
+import logging
 from dataclasses import field
-from typing import Any
+from typing import Any, get_args
 
 from typing_extensions import Self
+
+LOGGER = logging.getLogger(__name__)
 
 
 class ConfigHolder:
@@ -61,4 +64,23 @@ class ConfigHolder:
                 section = self.sections[key]
                 section.update_from_dict(value)
             elif hasattr(self, key):
-                setattr(self, key, value)
+                self.set_typesafe(key, value)
+
+    def set_typesafe(self, key: str, value: Any) -> None:
+        """
+        Sets an attribute only if the value is of the correct type.
+
+        Args:
+            key: attribute name
+            value: value to set
+        """
+        annotation: type = self.__annotations__[key]
+        validators = [
+            type(value) is annotation,
+            annotation.__name__ == "Literal" and value in get_args(annotation),
+            annotation.__name__ == "list" and all(isinstance(m, get_args(annotation)[0]) for m in value),
+        ]
+        if any(validators):
+            setattr(self, key, value)
+        else:
+            LOGGER.warning("Couldn't set %s to %s, type mismatch", key, value)
