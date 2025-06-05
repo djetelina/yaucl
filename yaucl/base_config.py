@@ -1,3 +1,4 @@
+import inspect
 import logging
 import sys
 from dataclasses import dataclass
@@ -155,7 +156,7 @@ class BaseConfig(ConfigHolder):
 
     def update_from_env(self) -> None:
         """Updates the config from environment variables."""
-        for key, expected_type in self.__annotations__.items():
+        for key, expected_type in inspect.get_annotations(type(self)).items():
             if key in self.sections:
                 section = getattr(self, key)
                 section.update_from_env(key, prefix=[self.app_name])
@@ -181,7 +182,7 @@ class BaseConfig(ConfigHolder):
 |--------|-------------|------|---------|
 """
         for option, default in self._defaults.items():
-            doc += f"""| `{option}` | -- | `{self.__annotations__[option].__name__}` | `{default}` |\n"""
+            doc += f"""| `{option}` | -- | `{inspect.get_annotations(type(self))[option].__name__}` | `{default}` |\n"""
         if self.sections:
             doc += """\n### Sections\n\n"""
         for section_name, section in self.sections.items():

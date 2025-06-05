@@ -1,6 +1,6 @@
 import logging
 import os
-from typing import Any, Literal, TypeVar, get_args
+from typing import Any, TypeVar, get_args
 
 LOGGER = logging.getLogger(__name__)
 T_B = TypeVar("T_B", str, int, float)

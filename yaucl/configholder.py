@@ -1,3 +1,4 @@
+import inspect
 import logging
 from dataclasses import field
 from typing import Any, get_args
@@ -20,7 +21,7 @@ class ConfigHolder:
         Returns: Configuration options that belong to this section.
 
         """
-        return {s: t for s, t in self.__annotations__.items() if not s.startswith("_")}
+        return {s: t for s, t in inspect.get_annotations(type(self)).items() if not s.startswith("_")}
 
     def remember_as_defaults(self) -> None:
         """
@@ -74,7 +75,7 @@ class ConfigHolder:
             key: attribute name
             value: value to set
         """
-        annotation: type = self.__annotations__[key]
+        annotation: type = inspect.get_annotations(type(self))[key]
         validators = [
             type(value) is annotation,
             annotation.__name__ == "Literal" and value in get_args(annotation),

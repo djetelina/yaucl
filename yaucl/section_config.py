@@ -1,3 +1,5 @@
+import inspect
+
 from yaucl.configholder import ConfigHolder
 from yaucl.env import get_env_value
 
@@ -14,7 +16,7 @@ class BaseSectionConfig(ConfigHolder):
         Returns:
 
         """
-        for key, expected_type in self.__annotations__.items():
+        for key, expected_type in inspect.get_annotations(type(self)).items():
             if key in self.sections:
                 section = self.sections[key]
                 new_prefix = [*prefix, section_key]
@@ -40,7 +42,7 @@ class BaseSectionConfig(ConfigHolder):
 |--------|-------------|------|---------|
 """
         for option, default in self._defaults.items():
-            doc += f"""| `{option}` | -- | `{self.__annotations__[option].__name__}` | `{default}` |\n"""
+            doc += f"""| `{option}` | -- | `{inspect.get_annotations(type(self))[option].__name__}` | `{default}` |\n"""
 
         for section_name, section in self.sections.items():
             subsection_name = f"{name}.{section_name}"
